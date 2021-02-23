@@ -20,6 +20,7 @@ namespace Homework4
              * 
              * 4. Реализовать любые две сортировки из списка в лекции.
              */
+            
             var task1 = new Task1();
             task1.Start();
 

@@ -36,7 +36,7 @@ namespace Homework4.Models
             }
 
             sortingTime.Stop();
-            Console.WriteLine("Shaker sort working time is " + sortingTime.ElapsedMilliseconds + " ms");
+            Console.WriteLine("ShakerSort working time is " + sortingTime.ElapsedMilliseconds + " ms");
             
             return array;
         }

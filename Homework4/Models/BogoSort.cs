@@ -40,7 +40,7 @@ namespace Homework4.Models
                 array = RandomMixing(array);
             }
             sortingTime.Stop();
-            Console.WriteLine("Shaker sort working time is " + sortingTime.ElapsedMilliseconds + " ms");
+            Console.WriteLine("BogoSort working time is " + sortingTime.ElapsedMilliseconds + " ms");
             
             return array;
         }

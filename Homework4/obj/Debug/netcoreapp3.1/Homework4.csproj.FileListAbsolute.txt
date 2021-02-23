@@ -1,0 +1,13 @@
+D:\Study\AQA\AQACourses\Homework4\bin\Debug\netcoreapp3.1\Homework4.exe
+D:\Study\AQA\AQACourses\Homework4\bin\Debug\netcoreapp3.1\Homework4.deps.json
+D:\Study\AQA\AQACourses\Homework4\bin\Debug\netcoreapp3.1\Homework4.runtimeconfig.json
+D:\Study\AQA\AQACourses\Homework4\bin\Debug\netcoreapp3.1\Homework4.runtimeconfig.dev.json
+D:\Study\AQA\AQACourses\Homework4\bin\Debug\netcoreapp3.1\Homework4.dll
+D:\Study\AQA\AQACourses\Homework4\bin\Debug\netcoreapp3.1\Homework4.pdb
+D:\Study\AQA\AQACourses\Homework4\obj\Debug\netcoreapp3.1\Homework4.csprojAssemblyReference.cache
+D:\Study\AQA\AQACourses\Homework4\obj\Debug\netcoreapp3.1\Homework4.AssemblyInfoInputs.cache
+D:\Study\AQA\AQACourses\Homework4\obj\Debug\netcoreapp3.1\Homework4.AssemblyInfo.cs
+D:\Study\AQA\AQACourses\Homework4\obj\Debug\netcoreapp3.1\Homework4.csproj.CoreCompileInputs.cache
+D:\Study\AQA\AQACourses\Homework4\obj\Debug\netcoreapp3.1\Homework4.dll
+D:\Study\AQA\AQACourses\Homework4\obj\Debug\netcoreapp3.1\Homework4.pdb
+D:\Study\AQA\AQACourses\Homework4\obj\Debug\netcoreapp3.1\Homework4.genruntimeconfig.cache

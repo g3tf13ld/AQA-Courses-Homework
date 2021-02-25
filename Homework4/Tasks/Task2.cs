@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Homework4.Models;
 
 namespace Homework4.Tasks
 {
@@ -10,25 +11,6 @@ namespace Homework4.Tasks
     
     public class Task2
     {
-        private Queue<int> GetRandomIntQueue(Queue<int> queue, int count = 1)
-        {
-            while (queue.Count < count - 1)
-            {
-                var newItem = new Random().Next(0, 100);
-                if (!queue.Contains(newItem)) queue.Enqueue(newItem);
-            }
-            
-            return queue;
-        }
-
-        private void QueueDisplay(Queue<int> queue)
-        {
-            foreach (var q in queue)
-            {
-                Console.Write(q + " ");
-            }
-            Console.WriteLine();
-        }
 
         private int GetRangeMinMaxSum(Queue<int> queue)
         {
@@ -74,13 +56,14 @@ namespace Homework4.Tasks
         public void Start()
         {
             var queue1 = new Queue<int>();
-
-            queue1 = GetRandomIntQueue(queue1, new Random().Next(5, 8));
+            var displayer = new CollectionDisplayer();
+            queue1 = new CollectionGenerator().GenerateQueue(new Random().Next(5, 8));;
                 
             Console.WriteLine("Task 2");
-            QueueDisplay(queue1);
-
-            Console.WriteLine(GetRangeMinMaxSum(queue1));
+            Console.Write("Queue: ");
+            displayer.Display(queue1);
+            
+            Console.WriteLine($"Sum of range between Min and Max : {GetRangeMinMaxSum(queue1)}");
             Console.WriteLine();
         }
     }

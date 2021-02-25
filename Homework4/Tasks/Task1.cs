@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Homework4.Models;
+using Microsoft.VisualBasic;
 
 namespace Homework4.Tasks
 {
@@ -10,16 +12,6 @@ namespace Homework4.Tasks
          * Из двух заданных стеков, хранящих цифры, создать новый стек из тех цифр,
          *      которые есть и в первом и во втором стеке.
          */
-        
-        private Stack<int> RandomIntStackInit(Stack<int> stack, int count = 1)
-        {
-            for (var i = 0; i < count; i++)
-            {
-                stack.Push(new Random().Next(0, 9));
-            }
-
-            return stack;
-        }
 
         private Stack<int> GetUniqItemsStack(Stack<int> s1, Stack<int> s2)
         {
@@ -50,35 +42,27 @@ namespace Homework4.Tasks
 
             return result;
         }
-
-        private void StackDisplay(Stack<int> stack)
-        {
-            foreach (var s in stack)
-            {
-                Console.Write(s + " ");
-            }
-            Console.WriteLine();
-        }
         
         public void Start()
         {
             var stack1 = new Stack<int>();
             var stack2 = new Stack<int>();
             var stack3 = new Stack<int>();
+            var displayer = new CollectionDisplayer();
             
             Console.WriteLine("Task 1");
-            stack1 = RandomIntStackInit(stack1, new Random().Next(5, 8));
-            stack2 = RandomIntStackInit(stack2, new Random().Next(5, 8));
+            stack1 = new CollectionGenerator().GenerateStack(new Random().Next(5, 8));
+            stack2 = new CollectionGenerator().GenerateStack(new Random().Next(5, 8));
 
             Console.Write("Stack1: ");
-            StackDisplay(stack1);
+            displayer.Display(stack1);
             Console.Write("Stack2: ");
-            StackDisplay(stack2);
+            displayer.Display(stack2);
             
             stack3 = GetUniqItemsStack(stack1, stack2);
 
             Console.Write("Stack3: ");
-            StackDisplay(stack3);
+            displayer.Display(stack3);
             Console.WriteLine();
         }
     }

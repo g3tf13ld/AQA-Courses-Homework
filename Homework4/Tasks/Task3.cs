@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Homework4.Models;
 
 namespace Homework4.Tasks
 {
@@ -22,23 +23,15 @@ namespace Homework4.Tasks
             return linkedList;
         }
         
-        private void LinkedListDisplay(LinkedList<int> linkedList)
-        {
-            foreach (var item in linkedList)
-            {
-                Console.Write(item + " ");
-            }
-            Console.WriteLine();
-        }
-
         private void Deletion(LinkedList<int> linkedList)
         {
-            LinkedListDisplay(linkedList);
+            var displayer = new CollectionDisplayer();
+            displayer.Display(linkedList);
             var curItem = linkedList.First;
             while (linkedList.Count != 1)
             {
                 linkedList.Remove(curItem.Next ?? linkedList.First);
-                LinkedListDisplay(linkedList);
+                displayer.Display(linkedList);
                 curItem = curItem.Next ?? linkedList.First;
             }
         }

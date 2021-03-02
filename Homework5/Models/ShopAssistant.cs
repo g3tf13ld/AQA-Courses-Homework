@@ -16,29 +16,26 @@ namespace Homework5.Models
 
         private List<SmartphonePosition> FindSmartphone(string searchPhrase)
         {
-            searchPhrase.ToLower();
-            var searchArray = searchPhrase.Split(new char [] {' ', ',', '.', ':', '\t' });
+            var searchArray = searchPhrase.ToLower().Split(new char [] {' ', ',', '.', ':', '\t' });
  
-            // foreach (var s in searchArray) {
-            // if (s.Trim() != "")
-            //         Console.WriteLine(s);
-            // }
-            
+            // foreach (var s in searchArray)
+            //     Console.WriteLine(s);
+
             var tempList = new List<SmartphonePosition>();
+            
             foreach (var shopItem in ShopAggregator.Shops)
             {
                 foreach (var  smartphoneItem in shopItem.Smartphones)
                 {
                     foreach (var searchWord in searchArray)
                     {
-                        if (smartphoneItem.Model.Contains(searchWord) && !tempList.Contains(smartphoneItem))
+                        if (smartphoneItem.Model.ToLower().Contains(searchWord) && !tempList.Contains(smartphoneItem))
                         {
                             tempList.Add(smartphoneItem);
                         }
                     }
                 }
             }
-
             return tempList;
         }
 
@@ -50,7 +47,7 @@ namespace Homework5.Models
                     select smartphoneItem).ToList();
         }
 
-        private void AvailableSmartphoneDisplay(List<SmartphonePosition> smartphoneList)
+        private void SmartphoneDisplayByShop(List<SmartphonePosition> smartphoneList)
         {
             // Rebuild with shop differentiation
             List<int> shopList = new List<int> {};
@@ -72,14 +69,22 @@ namespace Homework5.Models
                         
                         foreach (var smartphoneItem in smartphoneList)
                         {
-                            Console.WriteLine($"\t{smartphoneItem.Model}: ${smartphoneItem.Price}");
+                            if (smartphoneItem.ShopId == shopIdItem)
+                            {
+                                if (smartphoneItem.IsAvailable)
+                                {
+                                    Console.WriteLine($"\t{smartphoneItem.Model}\n\tActual price: ${smartphoneItem.Price}\n");
+                                }
+                                else
+                                {
+                                    Console.WriteLine($"\t{smartphoneItem.Model}\n\tOut of stock!\n\tLast price: ${smartphoneItem.Price}\n");
+                                }
+                            }
                         }
-
                         Console.WriteLine();
                     }
                 }
             }
-            
         }
 
         private void Communicate()
@@ -106,7 +111,7 @@ namespace Homework5.Models
                 availableSmartphoneList = FindAvailableSmartphone(foundedSmartphoneList);
             }
             
-            AvailableSmartphoneDisplay(availableSmartphoneList);
+            SmartphoneDisplayByShop(foundedSmartphoneList);
             
         }
 

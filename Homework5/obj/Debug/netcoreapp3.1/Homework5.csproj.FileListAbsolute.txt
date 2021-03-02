@@ -1,0 +1,16 @@
+D:\Study\AQA\AQACourses\Homework5\bin\Debug\netcoreapp3.1\Homework5.exe
+D:\Study\AQA\AQACourses\Homework5\bin\Debug\netcoreapp3.1\appsettings.json
+D:\Study\AQA\AQACourses\Homework5\bin\Debug\netcoreapp3.1\Homework5.deps.json
+D:\Study\AQA\AQACourses\Homework5\bin\Debug\netcoreapp3.1\Homework5.runtimeconfig.json
+D:\Study\AQA\AQACourses\Homework5\bin\Debug\netcoreapp3.1\Homework5.runtimeconfig.dev.json
+D:\Study\AQA\AQACourses\Homework5\bin\Debug\netcoreapp3.1\Homework5.dll
+D:\Study\AQA\AQACourses\Homework5\bin\Debug\netcoreapp3.1\Homework5.pdb
+D:\Study\AQA\AQACourses\Homework5\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+D:\Study\AQA\AQACourses\Homework5\obj\Debug\netcoreapp3.1\Homework5.csprojAssemblyReference.cache
+D:\Study\AQA\AQACourses\Homework5\obj\Debug\netcoreapp3.1\Homework5.AssemblyInfoInputs.cache
+D:\Study\AQA\AQACourses\Homework5\obj\Debug\netcoreapp3.1\Homework5.AssemblyInfo.cs
+D:\Study\AQA\AQACourses\Homework5\obj\Debug\netcoreapp3.1\Homework5.csproj.CoreCompileInputs.cache
+D:\Study\AQA\AQACourses\Homework5\obj\Debug\netcoreapp3.1\Homework5.csproj.CopyComplete
+D:\Study\AQA\AQACourses\Homework5\obj\Debug\netcoreapp3.1\Homework5.dll
+D:\Study\AQA\AQACourses\Homework5\obj\Debug\netcoreapp3.1\Homework5.pdb
+D:\Study\AQA\AQACourses\Homework5\obj\Debug\netcoreapp3.1\Homework5.genruntimeconfig.cache

@@ -12,9 +12,7 @@ namespace Homework3.Factories
                 .RuleFor(p => p.Id, f => f.Random.Guid())
                 .RuleFor(p => p.FirstName, f => f.Name.FirstName())
                 .RuleFor(p => p.LastName, f => f.Name.LastName())
-                .RuleFor(p => p.JobTitle, f => f.Name.JobTitle())
-                .RuleFor(p => p.JobDescription, f => f.Name.JobDescriptor())
-                .RuleFor(p => p.Salary, f => f.Random.Int(1000, 1000000))
+                .RuleFor(p => p.Job, GetJob())
                 .Generate(count);
         }
         
@@ -24,14 +22,31 @@ namespace Homework3.Factories
                 .RuleFor(p => p.Id, f => f.Random.Guid())
                 .RuleFor(p => p.FirstName, f => f.Name.FirstName())
                 .RuleFor(p => p.LastName, f => f.Name.LastName())
-                .RuleFor(p => p.JobTitle, f => f.Name.JobTitle())
-                .RuleFor(p => p.JobDescription, f => f.Name.JobDescriptor())
-                .RuleFor(p => p.Salary, f => f.Random.Int(1000, 1000000))
-                .RuleFor(p => p.CompanyName, f => f.Company.CompanyName())
-                .RuleFor(p => p.CompanyCountry, f => f.Address.Country())
-                .RuleFor(p => p.CompanyCity, f => f.Address.City())
-                .RuleFor(p => p.CompanyStreet, f => f.Address.StreetAddress())
+                .RuleFor(p => p.Job, GetJob())
+                .RuleFor(p => p.Company, GetCompany())
                 .Generate(count);
+        }
+
+        private Company GetCompany()
+        {
+            return new Faker<Company>().Rules((faker, company) =>
+            {
+                company.Name = faker.Company.CompanyName();
+                company.Country = faker.Address.Country();
+                company.City = faker.Address.City();
+                company.Street = faker.Address.StreetAddress();
+            });
+            
+        }
+
+        private Job GetJob()
+        {
+            return new Faker<Job>().Rules((faker, job) =>
+            {
+                job.Title = faker.Name.JobTitle();
+                job.Description = faker.Name.JobDescriptor();
+                job.Salary = faker.Random.Int(1000, 1000000);
+            });
         }
     }
 }

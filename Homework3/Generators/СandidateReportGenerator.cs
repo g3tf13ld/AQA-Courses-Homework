@@ -12,12 +12,12 @@ namespace Homework3.Models
 
         public СandidateReportGenerator(List<Candidate> candidates)
         {
-            this.Candidates = candidates;
+            Candidates = candidates;
         }
         private void Sort()
         {
             var orderedCandidates = from candidate in Candidates
-                                       orderby candidate.JobTitle, candidate.Salary
+                                       orderby candidate.Job.Title, candidate.Job.Salary
                                        select candidate;
             Candidates = orderedCandidates.ToList();
         }
@@ -25,25 +25,25 @@ namespace Homework3.Models
         public void Report()
         {
             Sort();
-            // The longest JobTitle, FullName and Salary in the Candidates List.
+            // The longest Title, FullName and Salary in the Candidates List.
             var symbolCounter1 = 9;
             var symbolCounter2 = 20;
             var symbolCounter3 = 6;
             
-            // The longest JobTitle, FullName and Salary value finding.
+            // The longest Title, FullName and Salary value finding.
             foreach (var candidate in Candidates)
             {
-                if (candidate.JobTitle.Length > symbolCounter1)
+                if (candidate.Job.Title.Length > symbolCounter1)
                 {
-                    symbolCounter1 = candidate.JobTitle.Length;
+                    symbolCounter1 = candidate.Job.Title.Length;
                 }
                 if (candidate.FullName.Length > symbolCounter2)
                 {
                     symbolCounter2 = candidate.FullName.Length;
                 }
-                if (candidate.Salary.ToString().Length > symbolCounter2)
+                if (candidate.Job.Salary.ToString().Length > symbolCounter2)
                 {
-                    symbolCounter3 = candidate.Salary.ToString().Length;
+                    symbolCounter3 = candidate.Job.Salary.ToString().Length;
                 }
             }
 
@@ -84,16 +84,16 @@ namespace Homework3.Models
                 stringBuilder.Clear();
                 stringBuilder.Append("| " + candidate.Id + " || ");
                 
-                stringBuilder.Append(candidate.JobTitle)
-                    .Insert(stringBuilder.Length, " ",  symbolCounter1 - candidate.JobTitle.Length)
+                stringBuilder.Append(candidate.Job.Title)
+                    .Insert(stringBuilder.Length, " ",  symbolCounter1 - candidate.Job.Title.Length)
                     .Append(" || ");
                 
                 stringBuilder.Append(candidate.FullName)
                     .Insert(stringBuilder.Length, " ", symbolCounter2 - candidate.FullName.Length)
                     .Append(" || "); 
                 
-                stringBuilder.Append(candidate.Salary)
-                    .Insert(stringBuilder.Length, " ", symbolCounter3 - candidate.Salary.ToString().Length)
+                stringBuilder.Append(candidate.Job.Salary)
+                    .Insert(stringBuilder.Length, " ", symbolCounter3 - candidate.Job.Salary.ToString().Length)
                     .Append(" |");
                 
                 Console.WriteLine(stringBuilder.ToString());

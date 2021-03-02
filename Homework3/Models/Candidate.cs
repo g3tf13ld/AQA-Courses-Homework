@@ -8,7 +8,7 @@ namespace Homework3.Models
         public void DisplayInfo()
         {
             Console.WriteLine($"Hello, I am {FullName}." +
-                              $" I want to be a {JobTitle} ({JobDescription}) with a salary from {Salary}");
+                              $" I want to be a {Job.Title} ({Job.Description}) with a salary from {Job.Salary}");
         }
     }
 }

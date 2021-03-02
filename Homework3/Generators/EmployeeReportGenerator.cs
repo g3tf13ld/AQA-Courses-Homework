@@ -17,7 +17,7 @@ namespace Homework3.Models
         private void Sort()
         {
             var temp = from employee in Employees
-                                        orderby employee.CompanyName, employee.Salary descending
+                                        orderby employee.Company.Name, employee.Job.Salary descending
                                         select employee;
             Employees = temp.ToList();
         }
@@ -25,25 +25,25 @@ namespace Homework3.Models
         public void Report()
         {
             Sort();
-            // The longest CompanyName, FullName and Salary in the Employees list.
+            // The longest Name, FullName and Salary in the Employees list.
             var symbolCounter1 = 12;
             var symbolCounter2 = 18;
             var symbolCounter3 = 6;
             
-            // The longest CompanyName, FullName and Salary value finding.
+            // The longest Name, FullName and Salary value finding.
             foreach (var employee in Employees)
             {
-                if (employee.CompanyName.Length > symbolCounter1)
+                if (employee.Company.Name.Length > symbolCounter1)
                 {
-                    symbolCounter1 = employee.CompanyName.Length;
+                    symbolCounter1 = employee.Company.Name.Length;
                 }
                 if (employee.FullName.Length > symbolCounter2)
                 {
                     symbolCounter2 = employee.FullName.Length;
                 }
-                if (employee.Salary.ToString().Length > symbolCounter2)
+                if (employee.Job.Salary.ToString().Length > symbolCounter2)
                 {
-                    symbolCounter3 = employee.Salary.ToString().Length;
+                    symbolCounter3 = employee.Job.Salary.ToString().Length;
                 }
             }
 
@@ -84,16 +84,16 @@ namespace Homework3.Models
                 stringBuilder.Clear();
                 stringBuilder.Append("| " + employee.Id + " || ");
                 
-                stringBuilder.Append(employee.CompanyName)
-                    .Insert(stringBuilder.Length, " ",  symbolCounter1 - employee.CompanyName.Length)
+                stringBuilder.Append(employee.Company.Name)
+                    .Insert(stringBuilder.Length, " ",  symbolCounter1 - employee.Company.Name.Length)
                     .Append(" || ");
                 
                 stringBuilder.Append(employee.FullName)
                     .Insert(stringBuilder.Length, " ", symbolCounter2 - employee.FullName.Length)
                     .Append(" || "); 
                 
-                stringBuilder.Append(employee.Salary)
-                    .Insert(stringBuilder.Length, " ", symbolCounter3 - employee.Salary.ToString().Length)
+                stringBuilder.Append(employee.Job.Salary)
+                    .Insert(stringBuilder.Length, " ", symbolCounter3 - employee.Job.Salary.ToString().Length)
                     .Append(" |");
                 
                 Console.WriteLine(stringBuilder.ToString());

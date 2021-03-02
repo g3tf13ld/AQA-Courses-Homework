@@ -5,16 +5,11 @@ namespace Homework3.Models
 {
     public class Employee : User, IInfoDisplayer
     {
-        public string CompanyName { get; set; }
-        public string CompanyCountry { get; set; }
-        public string CompanyCity { get; set; }
-        public string CompanyStreet { get; set; }
-        public string CompanyAddress => $"{CompanyCountry}, {CompanyCity}, {CompanyStreet}";
-        
+        public Company Company;
         public void DisplayInfo()
         {
-            Console.WriteLine($"Hello, I am {FullName}, {JobTitle} in {CompanyName}" +
-                              $" ({CompanyAddress}) and my salary {Salary} ");
+            Console.WriteLine($"Hello, I am {FullName}, {Job.Title} in {Company.Name}" +
+                              $" ({Company.Address}) and my salary {Job.Salary} ");
         }
     }
 }

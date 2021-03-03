@@ -2,6 +2,6 @@
 {
     public interface IInfoDisplayer
     {
-        public void DisplayInfo();
+        public abstract void DisplayInfo();
     }
 }

@@ -16,13 +16,12 @@ namespace Homework5.Models
 
         private List<SmartphonePosition> FindSmartphone(string searchPhrase)
         {
-            var searchArray = searchPhrase.ToLower().Split(new char [] {' ', ',', '.', ':', '\t' });
+            var tempList = new List<SmartphonePosition>();
+            var searchArray = searchPhrase.Split(new char [] {' ', ',', '.', ':', '\t' });
  
             // foreach (var s in searchArray)
             //     Console.WriteLine(s);
 
-            var tempList = new List<SmartphonePosition>();
-            
             foreach (var shopItem in ShopAggregator.Shops)
             {
                 foreach (var  smartphoneItem in shopItem.Smartphones)
@@ -36,6 +35,7 @@ namespace Homework5.Models
                     }
                 }
             }
+            
             return tempList;
         }
 
@@ -49,7 +49,7 @@ namespace Homework5.Models
 
         private void SmartphoneDisplayByShop(List<SmartphonePosition> smartphoneList)
         {
-            // Rebuild with shop differentiation
+            // List of all shops that contains sought-for smartphones
             List<int> shopList = new List<int> {};
             foreach (var smartphoneItem in smartphoneList)
             {
@@ -59,6 +59,7 @@ namespace Homework5.Models
                 }
             }
 
+            var counter = 0;
             foreach (var shopIdItem in shopList)
             {
                 foreach (var shopItem in ShopAggregator.Shops)
@@ -66,31 +67,54 @@ namespace Homework5.Models
                     if (shopItem.Id == shopIdItem)
                     {
                         shopItem.Display();
-                        
                         foreach (var smartphoneItem in smartphoneList)
                         {
                             if (smartphoneItem.ShopId == shopIdItem)
                             {
                                 if (smartphoneItem.IsAvailable)
                                 {
-                                    Console.WriteLine($"\t{smartphoneItem.Model}\n\tActual price: ${smartphoneItem.Price}\n");
+                                    Console.WriteLine($"\t{++counter}. {smartphoneItem.Model}");
+                                    Console.WriteLine($"\tActual price: ${smartphoneItem.Price}\n");
                                 }
                                 else
                                 {
-                                    Console.WriteLine($"\t{smartphoneItem.Model}\n\tOut of stock!\n\tLast price: ${smartphoneItem.Price}\n");
+                                    Console.WriteLine($"\t{++counter}. {smartphoneItem.Model}");
+                                    Console.WriteLine("\tOut of stock!");
+                                    Console.WriteLine($"\tLast price: ${smartphoneItem.Price}\n");
                                 }
                             }
                         }
+                        counter = 0;
                         Console.WriteLine();
                     }
                 }
             }
         }
 
+        // Check if the stores have smartphones from the list and if the store name matches the desired one
+        private bool IsTrueShopChoice(List<SmartphonePosition> smartphoneList, string shopName)
+        {
+            foreach (var shop in ShopAggregator.Shops)
+            {
+                foreach (var smartphone in smartphoneList)
+                {
+                    if (shop.Id == smartphone.ShopId && shop.Name.ToLower().Equals(shopName))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+        
         private void Communicate()
         {
             Console.WriteLine("What smartphone you want to buy?");
-            var soughtForSmartphone = Console.ReadLine();
+            
+            // ToLower() method use to make the case insensitive search  
+            var soughtForSmartphone = Console.ReadLine()?.ToLower();
+            Console.WriteLine();
             var foundedSmartphoneList = FindSmartphone(soughtForSmartphone);
             var availableSmartphoneList = FindAvailableSmartphone(foundedSmartphoneList);
             
@@ -107,11 +131,26 @@ namespace Homework5.Models
                 }
                 
                 soughtForSmartphone = Console.ReadLine();
+                Console.WriteLine();
                 foundedSmartphoneList = FindSmartphone(soughtForSmartphone);
                 availableSmartphoneList = FindAvailableSmartphone(foundedSmartphoneList);
             }
             
             SmartphoneDisplayByShop(foundedSmartphoneList);
+
+            Console.WriteLine("Choose the shop.");
+            var shopChoice = Console.ReadLine()?.ToLower();
+            var shopFlag = IsTrueShopChoice(foundedSmartphoneList, shopChoice);
+            
+            while (!shopFlag)
+            {
+                Console.WriteLine("Shop not found. Choose the shop one more time.");
+                shopChoice = Console.ReadLine()?.ToLower();
+                shopFlag = IsTrueShopChoice(foundedSmartphoneList, shopChoice);
+            }
+
+            Console.WriteLine("Choose the smartphone.");
+            var smartphoneChoice = Console.ReadLine()?.ToLower();
             
         }
 

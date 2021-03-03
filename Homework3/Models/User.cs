@@ -11,9 +11,6 @@ namespace Homework3.Models
         public string FullName => FirstName + " " + LastName;
         public Job Job;
         
-        public void DisplayInfo()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void DisplayInfo();
     }
 }

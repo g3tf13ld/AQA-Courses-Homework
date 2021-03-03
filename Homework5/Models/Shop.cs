@@ -19,6 +19,7 @@ namespace Homework5.Models
         {
             Console.WriteLine($"Name: {Name}");
             Console.WriteLine($"Description: {Description}");
+            Console.WriteLine($"Id: {Id}");
         }
 
         public int AvailableSmartphoneModelsCountByOS(SmartphoneOS os)

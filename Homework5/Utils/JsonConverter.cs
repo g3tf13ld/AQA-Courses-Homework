@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace Homework5.Utils
 {
-    public class JsonConverter
+    public static class JsonConverter
     {
         public static ShopAggregator GetShopAggregator(string jsonString)
         {

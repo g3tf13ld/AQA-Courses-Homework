@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Security.Cryptography;
 using Newtonsoft.Json;
+using NLog;
 
 namespace Homework5.Models
 {
@@ -10,7 +9,8 @@ namespace Homework5.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
+        private string Description { get; set; }
+        private readonly Logger _logger = LogManager.GetCurrentClassLogger();
         
         [JsonProperty("Phones")]
         public List<SmartphonePosition> Smartphones;
@@ -20,14 +20,17 @@ namespace Homework5.Models
             Console.WriteLine($"Name: {Name}");
             Console.WriteLine($"Description: {Description}");
             Console.WriteLine($"Id: {Id}");
+            _logger.Info($"Name: {Name}");
+            _logger.Info($"Description: {Description}");
+            _logger.Info($"Id: {Id}");
         }
 
-        public int AvailableSmartphoneModelsCountByOS(SmartphoneOS os)
+        private int AvailableSmartphoneModelsCountByOs(SmartphoneOS os)
         {
             var count = 0;
             foreach (var item in Smartphones)
             {
-                if (item.OS == os && item.IsAvailable) count++;
+                if (item.Os == os && item.IsAvailable) count++;
             }
 
             return count;
@@ -37,10 +40,15 @@ namespace Homework5.Models
         {
             Console.WriteLine(Name);
             Console.WriteLine(Description);
-            Console.WriteLine($"Available Android smartphones: {AvailableSmartphoneModelsCountByOS(SmartphoneOS.Android)}");
-            Console.WriteLine($"AvailableIOS smartphones: {AvailableSmartphoneModelsCountByOS(SmartphoneOS.IOS)}");
-            Console.WriteLine($"Available smartphones with unknown OS: {AvailableSmartphoneModelsCountByOS(SmartphoneOS.Unknown)}");
+            Console.WriteLine($"Available Android smartphones: {AvailableSmartphoneModelsCountByOs(SmartphoneOS.Android)}");
+            Console.WriteLine($"AvailableIOS smartphones: {AvailableSmartphoneModelsCountByOs(SmartphoneOS.IOS)}");
+            Console.WriteLine($"Available smartphones with unknown OS: {AvailableSmartphoneModelsCountByOs(SmartphoneOS.Unknown)}");
             Console.WriteLine();
+            _logger.Info(Name);
+            _logger.Info(Description);
+            _logger.Info($"Available Android smartphones: {AvailableSmartphoneModelsCountByOs(SmartphoneOS.Android)}");
+            _logger.Info($"AvailableIOS smartphones: {AvailableSmartphoneModelsCountByOs(SmartphoneOS.IOS)}");
+            _logger.Info($"Available smartphones with unknown OS: {AvailableSmartphoneModelsCountByOs(SmartphoneOS.Unknown)}");
         }
     }
 }

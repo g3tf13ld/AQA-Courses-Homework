@@ -6,7 +6,7 @@ namespace Homework5.Utils
 {
     public class JsonReader
     {
-        public readonly string _Filename = "appsettings.json";
+        private readonly string _filename = "appsettings.json";
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
         /*
@@ -15,12 +15,11 @@ namespace Homework5.Utils
                 this.filename = filename;
             }
         */
-        
-        
+
         public string ReadFile()
         {
             var basePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            var fullPathToFile = $"{basePath}{Path.DirectorySeparatorChar}{_Filename}";
+            var fullPathToFile = $"{basePath}{Path.DirectorySeparatorChar}{_filename}";
 
             try
             {

@@ -39,6 +39,19 @@ namespace Homework5.Models
             return tempList;
         }
 
+        private SmartphonePosition FindSmartphoneByFullMatch(Shop shop, string searchPhrase)
+        {
+            foreach (var smartphoneItem in shop.Smartphones)
+            {
+                if (smartphoneItem.Model.ToLower().Equals(searchPhrase) && smartphoneItem.IsAvailable)
+                {
+                    return smartphoneItem;
+                }
+            }
+
+            return null;
+        }
+        
         private List<SmartphonePosition> FindAvailableSmartphone(List<SmartphonePosition> smartphoneList)
         {
             return
@@ -59,6 +72,7 @@ namespace Homework5.Models
                 }
             }
 
+            // The method can be used to display the assortment taking into account the availability
             var counter = 0;
             foreach (var shopIdItem in shopList)
             {
@@ -90,9 +104,8 @@ namespace Homework5.Models
                 }
             }
         }
-
-        // Check if the stores have smartphones from the list and if the store name matches the desired one
-        private bool IsTrueShopChoice(List<SmartphonePosition> smartphoneList, string shopName)
+        
+        private Shop ShopBySmartphoneAndName(List<SmartphonePosition> smartphoneList, string shopName)
         {
             foreach (var shop in ShopAggregator.Shops)
             {
@@ -100,19 +113,20 @@ namespace Homework5.Models
                 {
                     if (shop.Id == smartphone.ShopId && shop.Name.ToLower().Equals(shopName))
                     {
-                        return true;
+                        return shop;
                     }
                 }
             }
 
-            return false;
+            return null;
         }
         
+        // Main communication method. All communication logic is here.
         private void Communicate()
         {
             Console.WriteLine("What smartphone you want to buy?");
             
-            // ToLower() method use to make the case insensitive search  
+            // ToLower() method using to make the case insensitive search
             var soughtForSmartphone = Console.ReadLine()?.ToLower();
             Console.WriteLine();
             var foundedSmartphoneList = FindSmartphone(soughtForSmartphone);
@@ -136,22 +150,42 @@ namespace Homework5.Models
                 availableSmartphoneList = FindAvailableSmartphone(foundedSmartphoneList);
             }
             
-            SmartphoneDisplayByShop(foundedSmartphoneList);
+            SmartphoneDisplayByShop(availableSmartphoneList);
 
             Console.WriteLine("Choose the shop.");
+            // ToLower() method using to make the case insensitive search
             var shopChoice = Console.ReadLine()?.ToLower();
-            var shopFlag = IsTrueShopChoice(foundedSmartphoneList, shopChoice);
+            var choosedShop = ShopBySmartphoneAndName(foundedSmartphoneList, shopChoice);
             
-            while (!shopFlag)
+            while (choosedShop == null)
             {
                 Console.WriteLine("Shop not found. Choose the shop one more time.");
                 shopChoice = Console.ReadLine()?.ToLower();
-                shopFlag = IsTrueShopChoice(foundedSmartphoneList, shopChoice);
+                choosedShop = ShopBySmartphoneAndName(foundedSmartphoneList, shopChoice);
             }
 
-            Console.WriteLine("Choose the smartphone.");
+            Console.WriteLine("Choose the smartphone (type full smartphone model).");
+            // ToLower() method using to make the case insensitive search
             var smartphoneChoice = Console.ReadLine()?.ToLower();
+            var choosedSmartphone = FindSmartphoneByFullMatch(choosedShop, smartphoneChoice);
+            var flag = true;
             
+            while (flag)
+            {
+                // Check for smartphone existence and availability
+                if (choosedSmartphone != null)
+                {
+                    Console.WriteLine($"Order {choosedSmartphone.Model} for the amount of " +
+                                      $"${choosedSmartphone.Price} has been successfully completed");
+                    flag = false;
+                }
+                else
+                {
+                    Console.WriteLine("Wrong smartphone model. Please, try again.");
+                    smartphoneChoice = Console.ReadLine()?.ToLower();
+                    choosedSmartphone = FindSmartphoneByFullMatch(choosedShop, smartphoneChoice);
+                }
+            }
         }
 
         public void Start()

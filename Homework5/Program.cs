@@ -1,9 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using Homework5.Models;
+using Homework5.Utils;
 using Newtonsoft.Json;
+using JsonReader = Homework5.Utils.JsonReader;
 
 namespace Homework5
 {
@@ -11,6 +12,7 @@ namespace Homework5
     {
         static void Main(string[] args)
         {
+            /*
             var basePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             var fullPathToFile = $"{basePath}{Path.DirectorySeparatorChar}appsettings.json";
 
@@ -28,8 +30,8 @@ namespace Homework5
             {
                 Console.WriteLine($"Exception: {e}");
             }
-            
-            aggregator = JsonConvert.DeserializeObject<ShopAggregator>(str);
+*/
+            var aggregator = Utils.JsonConverter.GetShopAggregator(new JsonReader().ReadFile());
 
             var assistant = new ShopAssistant(aggregator);
             assistant.Start();

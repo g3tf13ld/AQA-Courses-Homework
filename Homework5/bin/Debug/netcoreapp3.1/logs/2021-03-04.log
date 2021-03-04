@@ -1,0 +1,64 @@
+2021-03-04 20:30:06.1326 | INFO | Homework5.Program |  ----------------- APPLICATION START ----------------- 
+2021-03-04 20:30:06.1591 | INFO | Homework5.Utils.JsonReader | The file D:\Study\AQA\AQACourses\Homework5\bin\Debug\netcoreapp3.1\appsettings.json read successfully.
+2021-03-04 20:30:06.2887 | INFO | Homework5.Models.ShopAssistant |  ----------------- ASSISTANT START ----------------- 
+2021-03-04 20:30:06.2887 | INFO | Homework5.Models.ShopAssistant | What smartphone you want to buy?
+2021-03-04 20:30:10.2589 | INFO | Homework5.Models.ShopAssistant | samsung
+2021-03-04 20:30:10.2589 | INFO | Homework5.Models.Shop | Name: Onliner
+2021-03-04 20:30:10.2589 | INFO | Homework5.Models.Shop | Description: 
+2021-03-04 20:30:10.2589 | INFO | Homework5.Models.Shop | Id: 1
+2021-03-04 20:30:10.2589 | INFO | Homework5.Models.ShopAggregator | 	2. Samsung Galaxy S20
+2021-03-04 20:30:10.2589 | INFO | Homework5.Models.ShopAggregator | 	Actual price: $817
+2021-03-04 20:30:10.2589 | INFO | Homework5.Models.ShopAggregator | 	4. Samsung Galaxy S10
+2021-03-04 20:30:10.2589 | INFO | Homework5.Models.ShopAggregator | 	Actual price: $799
+2021-03-04 20:30:10.2589 | INFO | Homework5.Models.Shop | Name: Yandex Market
+2021-03-04 20:30:10.2589 | INFO | Homework5.Models.Shop | Description: 
+2021-03-04 20:30:10.2589 | INFO | Homework5.Models.Shop | Id: 2
+2021-03-04 20:30:10.2589 | INFO | Homework5.Models.ShopAggregator | 	2. Samsung Galaxy S9
+2021-03-04 20:30:10.2589 | INFO | Homework5.Models.ShopAggregator | 	Actual price: $509
+2021-03-04 20:30:10.2589 | INFO | Homework5.Models.ShopAssistant | Choose the shop.
+2021-03-04 20:30:19.2034 | INFO | Homework5.Models.ShopAssistant | yandex market
+2021-03-04 20:30:19.2049 | INFO | Homework5.Models.ShopAssistant | Choose the smartphone (type full smartphone model).
+2021-03-04 20:30:30.5117 | INFO | Homework5.Models.ShopAssistant | samsung galaxy s9
+2021-03-04 20:30:30.5117 | INFO | Homework5.Models.ShopAssistant | Order Samsung Galaxy S9 for the amount of $509 has been successfully completed.
+2021-03-04 20:30:30.5117 | INFO | Homework5.Models.ShopAssistant |  ------------------ ASSISTANT END ------------------ 
+2021-03-04 20:30:30.5117 | INFO | Homework5.Program |  ------------------ APPLICATION END ------------------ 
+
+2021-03-04 20:33:46.6775 | INFO | Homework5.Program |  ----------------- APPLICATION START ----------------- 
+2021-03-04 20:33:46.7124 | INFO | Homework5.Utils.JsonReader | The file D:\Study\AQA\AQACourses\Homework5\bin\Debug\netcoreapp3.1\appsettings.json read successfully.
+2021-03-04 20:33:46.8469 | INFO | Homework5.Models.ShopAssistant |  ----------------- ASSISTANT START ----------------- 
+2021-03-04 20:33:46.8469 | INFO | Homework5.Models.ShopAssistant | What smartphone you want to buy?
+2021-03-04 20:33:48.5209 | INFO | Homework5.Models.ShopAssistant | sd
+2021-03-04 20:33:48.5209 | ERROR | Homework5.Models.ShopAssistant | Homework5.Exceptions.SmartphoneNotFoundException: Can't find "sd" in any of the stores.
+2021-03-04 20:33:48.5209 | INFO | Homework5.Models.ShopAssistant | The product you entered was not found. Please, enter smartphone model one more time.
+2021-03-04 20:33:50.5640 | INFO | Homework5.Models.ShopAssistant | 12
+2021-03-04 20:33:50.5640 | ERROR | Homework5.Models.ShopAssistant | Homework5.Exceptions.SmartphoneOutOfStockException: "12" is out of stock.
+2021-03-04 20:33:50.5640 | INFO | Homework5.Models.ShopAssistant | This item is out of stock.
+2021-03-04 20:33:54.3551 | INFO | Homework5.Models.ShopAssistant | apple
+2021-03-04 20:33:54.3551 | INFO | Homework5.Models.Shop | Name: Onliner
+2021-03-04 20:33:54.3551 | INFO | Homework5.Models.Shop | Description: 
+2021-03-04 20:33:54.3551 | INFO | Homework5.Models.Shop | Id: 1
+2021-03-04 20:33:54.3551 | INFO | Homework5.Models.ShopAggregator | 	2. Apple Iphone SE
+2021-03-04 20:33:54.3551 | INFO | Homework5.Models.ShopAggregator | 	Actual price: $630
+2021-03-04 20:33:54.3551 | INFO | Homework5.Models.ShopAggregator | 	4. Apple Iphone XS
+2021-03-04 20:33:54.3551 | INFO | Homework5.Models.ShopAggregator | 	Actual price: $430
+2021-03-04 20:33:54.3608 | INFO | Homework5.Models.ShopAggregator | 	6. Apple Iphone 8
+2021-03-04 20:33:54.3608 | INFO | Homework5.Models.ShopAggregator | 	Actual price: $400
+2021-03-04 20:33:54.3608 | INFO | Homework5.Models.Shop | Name: Yandex Market
+2021-03-04 20:33:54.3608 | INFO | Homework5.Models.Shop | Description: 
+2021-03-04 20:33:54.3608 | INFO | Homework5.Models.Shop | Id: 2
+2021-03-04 20:33:54.3608 | INFO | Homework5.Models.ShopAggregator | 	2. Apple Iphone XS
+2021-03-04 20:33:54.3608 | INFO | Homework5.Models.ShopAggregator | 	Actual price: $430
+2021-03-04 20:33:54.3608 | INFO | Homework5.Models.ShopAssistant | Choose the shop.
+2021-03-04 20:33:58.3278 | INFO | Homework5.Models.ShopAssistant | onli
+2021-03-04 20:33:58.3278 | ERROR | Homework5.Models.ShopAssistant | Homework5.Exceptions.ShopNotFoundException: Can't find "onli" shop.
+2021-03-04 20:33:58.3297 | INFO | Homework5.Models.ShopAssistant | Shop not found. Choose the shop one more time.
+2021-03-04 20:34:01.1478 | INFO | Homework5.Models.ShopAssistant | onliner
+2021-03-04 20:34:01.1478 | INFO | Homework5.Models.ShopAssistant | Choose the smartphone (type full smartphone model).
+2021-03-04 20:34:06.3467 | INFO | Homework5.Models.ShopAssistant | adsf
+2021-03-04 20:34:06.3467 | ERROR | Homework5.Models.ShopAssistant | Homework5.Exceptions.WrongSmartphoneChoiceException: Can't find "adsf" in Onliner
+2021-03-04 20:34:06.3467 | INFO | Homework5.Models.ShopAssistant | Wrong smartphone model. Please, try again.
+2021-03-04 20:34:10.4748 | INFO | Homework5.Models.ShopAssistant | apple iphone 8
+2021-03-04 20:34:10.4748 | INFO | Homework5.Models.ShopAssistant | Order Apple Iphone 8 for the amount of $400 has been successfully completed.
+2021-03-04 20:34:10.4748 | INFO | Homework5.Models.ShopAssistant |  ------------------ ASSISTANT END ------------------ 
+2021-03-04 20:34:10.4748 | INFO | Homework5.Program |  ------------------ APPLICATION END ------------------ 
+

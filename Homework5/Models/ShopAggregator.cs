@@ -40,7 +40,7 @@ namespace Homework5.Models
                                     Console.WriteLine($"\t{++counter}. {smartphoneItem.Model}");
                                     Console.WriteLine($"\tActual price: ${smartphoneItem.Price}\n");
                                     _logger.Info($"\t{++counter}. {smartphoneItem.Model}");
-                                    _logger.Info($"\tActual price: ${smartphoneItem.Price}\n");
+                                    _logger.Info($"\tActual price: ${smartphoneItem.Price}");
                                 }
                                 else
                                 {
@@ -49,7 +49,7 @@ namespace Homework5.Models
                                     Console.WriteLine($"\tLast price: ${smartphoneItem.Price}\n");
                                     _logger.Info($"\t{++counter}. {smartphoneItem.Model}");
                                     _logger.Info("\tOut of stock!");
-                                    _logger.Info($"\tLast price: ${smartphoneItem.Price}\n");
+                                    _logger.Info($"\tLast price: ${smartphoneItem.Price}");
                                 }
                             }
                         }

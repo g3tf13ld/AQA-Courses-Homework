@@ -7,7 +7,7 @@ namespace Homework5.Utils
     public class JsonReader
     {
         private readonly string _filename = "appsettings.json";
-        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+        private readonly NLog.Logger _logger = NLog.LogManager.GetCurrentClassLogger();
 
         /*
             public JsonReader(string filename)
@@ -24,21 +24,22 @@ namespace Homework5.Utils
             try
             {
                 var streamReader = new StreamReader(fullPathToFile);
+                _logger.Info($"The file {fullPathToFile} read successfully.");
                 return streamReader.ReadToEnd();
             }
             catch (DirectoryNotFoundException ex)
             {
-                Logger.Error($"The Directory doesn't exist: {ex}");
+                _logger.Error($"The Directory doesn't exist: {ex}");
                 throw;
             }
             catch (FileNotFoundException ex)
             {
-                Logger.Error($"The File doesn't exist: {ex}");
+                _logger.Error($"The File doesn't exist: {ex}");
                 throw;
             }
             catch (IOException ex)
             {
-                Logger.Error($"The File can't be opened: {ex}");
+                _logger.Error($"The File can't be opened: {ex}");
                 throw;
             }
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Homework5.Exceptions;
 using NLog;
 
 namespace Homework5.Models
@@ -18,6 +19,7 @@ namespace Homework5.Models
         private List<SmartphonePosition> SearchSmartphone()
         {
             var soughtForSmartphone = DisplayMessageAndReadline("What smartphone you want to buy?");
+            _logger.Info(soughtForSmartphone);
             Console.WriteLine();
             
             var foundedSmartphoneList = _shopAggregator.FindSmartphone(soughtForSmartphone);
@@ -27,12 +29,17 @@ namespace Homework5.Models
             {
                 if (foundedSmartphoneList.Count == 0)
                 {
+                    _logger.Error($"{new SmartphoneNotFoundException($"Can't find \"{soughtForSmartphone}\" in any of the stores.")}");
                     soughtForSmartphone = DisplayMessageAndReadline("The product you entered was not found. Please, enter smartphone model one more time.");
+                    _logger.Info(soughtForSmartphone);
+                    
                 }
                 
                 if (foundedSmartphoneList.Count != 0 && availableSmartphoneList.Count == 0)
                 {
-                    soughtForSmartphone = DisplayMessageAndReadline("This item is out of stock");
+                    _logger.Error($"{new SmartphoneOutOfStockException($"\"{soughtForSmartphone}\" is out of stock.")}");
+                    soughtForSmartphone = DisplayMessageAndReadline("This item is out of stock.");
+                    _logger.Info(soughtForSmartphone);
                 }
                 
                 Console.WriteLine();
@@ -48,12 +55,15 @@ namespace Homework5.Models
         private Shop ChooseShop(List<SmartphonePosition> foundedSmartphoneList)
         {
             var shopChoice = DisplayMessageAndReadline("Choose the shop.");
+            _logger.Info(shopChoice);
             var choosedShop = _shopAggregator.ShopBySmartphoneAndName(foundedSmartphoneList, shopChoice);
             Console.WriteLine();
             
             while (choosedShop == null)
             {
+                _logger.Error($"{new ShopNotFoundException($"Can't find \"{shopChoice}\" shop.")}");
                 shopChoice = DisplayMessageAndReadline("Shop not found. Choose the shop one more time.");
+                _logger.Info(shopChoice);
                 choosedShop = _shopAggregator.ShopBySmartphoneAndName(foundedSmartphoneList, shopChoice);
                 Console.WriteLine();
             }
@@ -66,6 +76,7 @@ namespace Homework5.Models
             var smartphoneChoice = DisplayMessageAndReadline("Choose the smartphone (type full smartphone model).");
             // Check for smartphone existence and availability
             var choosedSmartphone = _shopAggregator.FindSmartphoneByFullMatch(choosedShop, smartphoneChoice);
+            _logger.Info(smartphoneChoice);
             Console.WriteLine();
             
             var selectionFlag = true;
@@ -79,8 +90,10 @@ namespace Homework5.Models
                 }
                 else
                 {
+                    _logger.Error($"{new WrongSmartphoneChoiceException($"Can't find \"{smartphoneChoice}\" in {choosedShop.Name}")}");
                     smartphoneChoice = DisplayMessageAndReadline("Wrong smartphone model. Please, try again.");
                     Console.WriteLine();
+                    _logger.Info(smartphoneChoice);
                     choosedSmartphone = _shopAggregator.FindSmartphoneByFullMatch(choosedShop, smartphoneChoice);
                 }
             }
@@ -89,7 +102,9 @@ namespace Homework5.Models
         // Main communication method.
         public void Start()
         {
+            _logger.Info(" ----------------- ASSISTANT START ----------------- ");
             PlaceTheOrder(ChooseShop(SearchSmartphone()));
+            _logger.Info(" ------------------ ASSISTANT END ------------------ ");
         }
 
         private void DisplayMessageAboutOrder(SmartphonePosition choosedSmartphone)

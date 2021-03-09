@@ -12,7 +12,7 @@ namespace Homework3.Factories
                 .RuleFor(p => p.Id, f => f.Random.Guid())
                 .RuleFor(p => p.FirstName, f => f.Name.FirstName())
                 .RuleFor(p => p.LastName, f => f.Name.LastName())
-                .RuleFor(p => p.Job, GetJob())
+                .RuleFor(p => p.Job, f => GetJob())
                 .Generate(count);
         }
         
@@ -22,12 +22,12 @@ namespace Homework3.Factories
                 .RuleFor(p => p.Id, f => f.Random.Guid())
                 .RuleFor(p => p.FirstName, f => f.Name.FirstName())
                 .RuleFor(p => p.LastName, f => f.Name.LastName())
-                .RuleFor(p => p.Job, GetJob())
-                .RuleFor(p => p.Company, GetCompany())
+                .RuleFor(p => p.Job, f => GetJob())
+                .RuleFor(p => p.Company, f =>GetCompany())
                 .Generate(count);
         }
 
-        private Company GetCompany()
+        private static Company GetCompany()
         {
             return new Faker<Company>().Rules((faker, company) =>
             {
@@ -39,7 +39,7 @@ namespace Homework3.Factories
             
         }
 
-        private Job GetJob()
+        private static Job GetJob()
         {
             return new Faker<Job>().Rules((faker, job) =>
             {

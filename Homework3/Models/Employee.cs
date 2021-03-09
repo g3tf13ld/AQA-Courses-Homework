@@ -3,7 +3,7 @@ using Homework3.Interfaces;
 
 namespace Homework3.Models
 {
-    public class Employee : User, IInfoDisplayer
+    public class Employee : User
     {
         public Company Company;
         public override void DisplayInfo()
